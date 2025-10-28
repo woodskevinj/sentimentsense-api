@@ -1,7 +1,6 @@
 # 💬 SentimentSense API – Real-Time Sentiment Analysis
 
-A lightweight **FastAPI-based sentiment analysis microservice** that classifies text as Positive, Negative, or Neutral using a trained NLP model.  
-This project demonstrates practical NLP deployment workflows for applied machine learning engineers.
+A lightweight **FastAPI-based sentiment analysis microservice** that classifies text as Positive, Negative, or Neutral using a hybrid NLP approach — combining a rule-based sentiment layer with a trained Logistic Regression model.
 
 ---
 
@@ -11,10 +10,10 @@ SentimentSense API enables developers and businesses to analyze customer feedbac
 
 The system includes:
 
-- Text preprocessing (tokenization, stopword removal, etc.)
-- Model training (Scikit-learn or Hugging Face transformers)
-- API endpoint for real-time sentiment prediction
-- Optional Docker containerization and AWS deployment
+- Text preprocessing (tokenization, stopword removal, lemmatization)
+- Hybrid sentiment logic (keyword rules + trained model)
+- Real-time inference via FastAPI
+- Optional Docker and AWS ECS deployment
 
 ---
 
@@ -24,8 +23,8 @@ The system includes:
 | ------------- | --------------------------- |
 | Language      | Python 3.9+                 |
 | Framework     | FastAPI                     |
-| NLP           | Scikit-learn / Transformers |
-| Model Serving | Pickle + FastAPI            |
+| NLP           | scikit-learn + NLTK         |
+| Model Serving | joblib + FastAPI            |
 | Deployment    | Docker / AWS ECS (optional) |
 
 ---
@@ -35,18 +34,23 @@ The system includes:
 ```bash
 # 1️⃣ Create and activate venv
 python -m venv venv
-source venv/bin/activate  # (Mac)
+source venv/bin/activate  # Mac/Linux
 pip install -r requirements.txt
 
-# 2️⃣ Run locally
+# 2️⃣ Train model
+python src/train_model.py
+
+# 3️⃣ Run API
 uvicorn app:app --reload
-
-# 3️⃣ Test endpoint
-curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d '{"text": "I love this API!"}'
-
 ```
 
----
+## 🧪 Example Predictions
+
+```bash
+curl -X POST "http://127.0.0.1:8000/predict" \
+     -H "Content-Type: application/json" \
+     -d '{"text": "I absolutely love this project!"}'
+```
 
 Expected response:
 
@@ -54,12 +58,15 @@ Expected response:
 { "sentiment": "positive" }
 ```
 
+---
+
 ## 📂 Project Structure
 
 ```css
 sentimentsense-api/
 ├── app.py
 ├── src/
+│   ├── __init__.py
 │   ├── preprocess.py
 │   ├── predict.py
 │   └── train_model.py
@@ -75,13 +82,33 @@ sentimentsense-api/
 
 ---
 
+## 🚀 Current Progress
+
+✅ Completed:
+
+- Model training and hybrid prediction logic
+
+- Working FastAPI endpoint /predict
+
+- Successful local testing via curl
+
+🛠️ Next Steps:
+
+- Add /health route with metadata
+
+- Train on larger dataset (IMDb or Sentiment140)
+
+- Dockerize and deploy via AWS ECS
+
+---
+
 ## 📅 Roadmap
 
 - [x] Project setup
 
-- [ ] Model training
+- [x] Model training
 
-- [ ] API endpoint for predictions
+- [x] API endpoint for predictions
 
 - [ ] Add logging, /logs, /health, and /info endpoints
 
