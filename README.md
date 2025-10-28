@@ -77,7 +77,7 @@ sentimentsense-api/
 
 ## 📅 Roadmap
 
-- [ ] Project setup
+- [x] Project setup
 
 - [ ] Model training
 
@@ -94,9 +94,5 @@ sentimentsense-api/
 👨‍💻 Author
 
 - Kevin Woods
-- Applied ML Engineer | AWS Certified AI Practitioner | Machine Learning Engineer – Associate
+- Applied ML Engineer | AWS Certified AI Practitioner | Machine Learning Certified Engineer – Associate
 - 🔗 GitHub: woodskevinj
-
-🧾 License
-
-- This project is open source under the MIT License.
