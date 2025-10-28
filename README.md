@@ -94,5 +94,5 @@ sentimentsense-api/
 👨‍💻 Author
 
 - Kevin Woods
-- Applied ML Engineer | AWS Certified AI Practitioner | Machine Learning Certified Engineer – Associate
+- Applied ML Engineer | AWS Certified AI Practitioner | AWS Machine Learning Certified Engineer – Associate
 - 🔗 GitHub: woodskevinj
