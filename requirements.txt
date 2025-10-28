@@ -1,0 +1,12 @@
+# ======================================================
+# 📦 Sentiment Sense API — Optimized Requirements
+# Author: Kevin Woods
+# ======================================================
+
+fastapi
+uvicorn
+pandas
+scikit-learn
+numpy
+nltk
+joblib

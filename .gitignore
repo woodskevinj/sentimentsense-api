@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+.env
+venv/
+.env/
+*.egg-info/
+
+# Data / models
+data/
+models/
+*.csv
+
+# OS
+.DS_Store
