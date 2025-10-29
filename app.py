@@ -6,7 +6,6 @@ from pydantic import BaseModel
 from src.predict import predict_sentiment
 
 
-
 app = FastAPI(title="SentimentSense API")
 
 # ======================================================
@@ -31,16 +30,6 @@ logger.addHandler(handler)
 logger.propagate = False # prevents duplicate logs if Uvicorn also logs
 
 logger.info("🚀 SentimentSense API started (rotating logs active)")
-
-
-# logging.basicConfig(
-#     filename=LOG_FILE,
-#     level=logging.INFO,
-#     format="%(asctime)s | %(message)s",
-# )
-
-# logger = logging.getLogger(__name__)
-# logger.info("🚀 Sentiments API Started")
 
 class TextInput(BaseModel):
     text: str
