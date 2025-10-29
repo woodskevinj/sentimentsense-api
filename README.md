@@ -82,6 +82,30 @@ sentimentsense-api/
 
 ---
 
+## 📜 Logging and Monitoring
+
+Every prediction request is automatically logged to rotating files under `/logs/`.
+
+Each log entry records:
+
+```bash
+YYYY-MM-DD HH:MM:SS | Text: <input> | Sentiment: <predicted_class>
+```
+
+Log rotation details:
+
+- File: `logs/sentiments.log`
+- Max file size: 1 MB
+- Up to 3 backups are maintained (`.1`, `.2`, `.3`)
+
+You can also view the latest predictions via API:
+
+```bash
+curl "http://127.0.0.1:8000/logs?limit=5"
+```
+
+---
+
 ## 🚀 Current Progress
 
 ✅ Completed:
