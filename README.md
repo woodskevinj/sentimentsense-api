@@ -62,10 +62,10 @@ Expected response:
 
 ## 🔗 API Endpoints
 
-1️⃣ /predict — Sentiment Inference
+### \*\*1️⃣ `/predict` — Sentiment Inference
 
-- Method: POST
-- Description: Classifies input text as Positive, Negative, or Neutral using the hybrid sentiment model.
+**Method:** `POST`
+**Description:** Classifies input text as Positive, Negative, or Neutral using the hybrid sentiment model.
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/predict" \
@@ -79,11 +79,11 @@ curl -X POST "http://127.0.0.1:8000/predict" \
 { "sentiment": "positive" }
 ```
 
-2️⃣ /logs — View Recent Predictions
+### \*\*2️⃣ `/logs` — View Recent Predictions
 
-- Method: GET
-- Query Param: limit (optional, default=10)
-- Description: Returns the most recent logged predictions from logs/sentiments.log.
+**Method:** `GET`
+**Query Param:** limit (optional, default=10)
+**Description:** Returns the most recent logged predictions from logs/sentiments.log.
 
 ```bash
 curl "http://127.0.0.1:8000/logs?limit=5"
@@ -100,10 +100,10 @@ curl "http://127.0.0.1:8000/logs?limit=5"
 }
 ```
 
-3️⃣ /health — API + Model Readiness
+### \*\* 3️⃣ `/health` — API + Model Readiness
 
-- Method: GET
-- Description: Confirms that the API, model, and vectorizer are loaded correctly — useful for ECS or uptime monitoring.
+**Method:** `GET`
+**Description:** Confirms that the API, model, and vectorizer are loaded correctly — useful for ECS or uptime monitoring.
 
 ```bash
 curl http://127.0.0.1:8000/health
@@ -122,8 +122,6 @@ curl http://127.0.0.1:8000/health
 ```
 
 ### **4️⃣ `/info` — Model Metadata & Version Info**
-
-- (Future endpoint: /info or /version — to display model version, build date, etc.)
 
 **Method:** `GET`  
 **Description:** Returns key metadata about the currently loaded model, including file size, modification date, and vectorizer stats.
