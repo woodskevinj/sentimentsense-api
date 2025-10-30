@@ -206,7 +206,7 @@ curl "http://127.0.0.1:8000/logs?limit=5"
 
 - [x] API endpoint for predictions
 
-- [ ] Add logging, /logs, /health, and /info endpoints
+- [x] Add logging, /logs, /health, and /info endpoints
 
 - [ ] Containerize with Docker
 

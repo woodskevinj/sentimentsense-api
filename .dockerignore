@@ -1,0 +1,12 @@
+# Ignore virtual envs, caches, logs, and local data
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+logs/
+data/
+models/
+.DS_Store
+.git
