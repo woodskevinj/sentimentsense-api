@@ -3,7 +3,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from src.predict import predict_sentiment
+from src.predict import predict_sentiment, vectorizer, model
 
 
 app = FastAPI(title="SentimentSense API")
@@ -71,3 +71,35 @@ async def get_logs(limit: int = 10):
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error reading logs: {e}")
+    
+# ======================================================
+# Health Check Endpoint — for ECS / Monitoring
+# ======================================================
+@app.get("/health")
+async def health_check():
+    """
+    Verifies that the API, model and vectorizer are load properly.
+    Useful for ECS or uptime monitoring
+    """
+    try:
+        # Basic in-memory test
+        test_test = "system test"
+        X_test = vectorizer.transform([test_test])
+        _=model.predict(X_test)
+
+        model_path = os.path.exists("models/sentiment_model.pkl")
+
+        return {
+            "status": "healthy",
+            "model_loaded": True,
+            "model_file_exists": model_path,
+            "vectorizer_features": getattr(vectorizer, "max_features", None),
+            "message": "API and model are ready for inference."
+        }
+    
+    except Exception as e:
+        return {
+            "status": "unhealth",
+            "model_loaded": False,
+            "error": str(e)
+        }
