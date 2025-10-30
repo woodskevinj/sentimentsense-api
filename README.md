@@ -121,7 +121,16 @@ curl http://127.0.0.1:8000/health
 }
 ```
 
+### **4️⃣ `/info` — Model Metadata & Version Info**
+
 - (Future endpoint: /info or /version — to display model version, build date, etc.)
+
+**Method:** `GET`  
+**Description:** Returns key metadata about the currently loaded model, including file size, modification date, and vectorizer stats.
+
+```bash
+curl http://127.0.0.1:8000/info
+```
 
 ---
 

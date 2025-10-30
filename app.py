@@ -3,6 +3,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from datetime import datetime
 from src.predict import predict_sentiment, vectorizer, model
 
 
@@ -103,3 +104,40 @@ async def health_check():
             "model_loaded": False,
             "error": str(e)
         }
+    
+# ======================================================
+# Model Info Endpoint — Metadata for Debugging & Versioning
+# ======================================================
+@app.get("/info")
+async def model_info():
+    """
+    Returns key metadata about the currently loaded sentiment model.
+    Useful for debugging, version tracking and documentation
+    """
+    try:
+        model_path = "models/sentiment_model.pkl"
+
+        # Model file stats
+        if os.path.exists(model_path):
+            modified_time = datetime.fromtimestamp(os.path.getmtime(model_path))
+            file_size_mb = os.path.getsize(model_path) / (1024 * 1024)
+        else:
+            modified_time = None
+            file_size_mb = None
+        
+        # Vectorizer stats
+        vocab_size = len(vectorizer.vocabulary_) if hasattr(vectorizer, "vocabulary_") else None
+
+        return {
+            "model_name": "Logistic Regression (TF-IDF)",
+            "framework": "scikit-learn",
+            "vectorizer_type": type(vectorizer).__name__,
+            "vocabulary_size": vocab_size,
+            "model_size": os.path.basename(model_path),
+            "model_size_mb": round(file_size_mb, 2) if file_size_mb else None,
+            "last_modified": str(modified_time) if modified_time else "unknown",
+            "status": "ready"
+        }
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving model info: {e}")
