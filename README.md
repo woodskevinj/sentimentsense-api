@@ -62,7 +62,7 @@ Expected response:
 
 ## 🔗 API Endpoints
 
-### \*\*1️⃣ `/predict` — Sentiment Inference
+### **1️⃣ `/predict` — Sentiment Inference**
 
 **Method:** `POST`
 **Description:** Classifies input text as Positive, Negative, or Neutral using the hybrid sentiment model.
@@ -79,7 +79,7 @@ curl -X POST "http://127.0.0.1:8000/predict" \
 { "sentiment": "positive" }
 ```
 
-### \*\*2️⃣ `/logs` — View Recent Predictions
+### **2️⃣ `/logs` — View Recent Predictions**
 
 **Method:** `GET`
 **Query Param:** limit (optional, default=10)
@@ -100,7 +100,7 @@ curl "http://127.0.0.1:8000/logs?limit=5"
 }
 ```
 
-### \*\* 3️⃣ `/health` — API + Model Readiness
+### **3️⃣ `/health` — API + Model Readiness**
 
 **Method:** `GET`
 **Description:** Confirms that the API, model, and vectorizer are loaded correctly — useful for ECS or uptime monitoring.
