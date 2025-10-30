@@ -148,6 +148,8 @@ sentimentsense-api/
 │   └── sample_texts.csv
 ├── requirements.txt
 ├── README.md
+├── Dockerfile
+├── .dockerignore
 └── .gitignore
 
 ```
