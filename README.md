@@ -180,6 +180,59 @@ curl "http://127.0.0.1:8000/logs?limit=5"
 
 ---
 
+## 🐳 Running with Docker
+
+SentimentSense API is fully containerized for easy deployment and reproducibility.
+
+- Build the Docker image
+
+```bash
+docker build -t sentimentsense-api .
+```
+
+- Run the container
+
+```bash
+docker run -d -p 8000:8000 sentimentsense-api
+```
+
+- Verify it's running
+
+- Open in your browser or use curl:
+
+```bash
+curl http://127.0.0.1:8000/health
+```
+
+- Expected:
+
+```json
+{
+  "status": "healthy",
+  "model_loaded": true,
+  "model_file_exists": true,
+  "message": "API and model are ready for inference."
+}
+```
+
+### **Available API Endpoints**
+
+| Endpoint   | Method | Description                                    |
+| ---------- | ------ | ---------------------------------------------- |
+| `/predict` | POST   | Classify text as Positive / Negative / Neutral |
+| `/logs`    | GET    | Retrieve recent sentiment logs                 |
+| `/health`  | GET    | API and model readiness probe                  |
+| `/info`    | GET    | Model and vectorizer metadata                  |
+
+- Stop the container
+
+```bash
+docker ps
+docker stop <container_id>
+```
+
+---
+
 ## 🚀 Current Progress
 
 ✅ Completed:
@@ -210,7 +263,7 @@ curl "http://127.0.0.1:8000/logs?limit=5"
 
 - [x] Add logging, /logs, /health, and /info endpoints
 
-- [ ] Containerize with Docker
+- [x] Containerize with Docker
 
 - [ ] Deploy to AWS ECS
 
